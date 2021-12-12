@@ -45,7 +45,7 @@ int main ( int argc, char *argv[] )
     int n;
     command_t commands[SAMPLE_BUFFER_SIZE] = {0};
 
-    printf("Advent of Code - Day 2\n\n");
+    printf("Advent of Code 2021 - Day 2: Dive!\n\n");
 
     if ( argc != 2)
     {
