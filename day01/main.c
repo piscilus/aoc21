@@ -1,24 +1,58 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
+/**
+ * \file main.c
+ *
+ * \copyright (C) 2021 piscilus
+ *
+ * \brief Main program for advent of code 2021 day 2.
+ */
 
+/*---- Includes --------------------------------------------------------------*/
 #include "record_access.h"
 
-#define SAMPLE_RECORD ("data_contest.txt")
+#include <stdio.h>
+#include <stdlib.h>
+
+
+/*---- Local macro definitions -----------------------------------------------*/
 #define SAMPLE_BUFFER_SIZE (2000)
 
+
+/*---- Local type definitions ------------------------------------------------*/
+
+
+/*---- Local function prototypes ---------------------------------------------*/
 int algorithm_part1(unsigned int samples[], int n);
 int algorithm_part2(unsigned int samples[], int n);
 
-int main (void)
+
+/*---- Global constants ------------------------------------------------------*/
+
+
+/*---- Global data -----------------------------------------------------------*/
+
+
+/*---- Local constants -------------------------------------------------------*/
+
+
+/*---- Local data ------------------------------------------------------------*/
+
+
+/*---- Exported functions ----------------------------------------------------*/
+int main ( int argc, char *argv[] )
 {
     int count = 0;
     unsigned int samples[SAMPLE_BUFFER_SIZE] = { 0 };
     int n;
 
-    printf("AOC - Day 1\n\n");
+    printf("Advent of Code 2021 - Day 1: Sonar Sweep\n\n");
 
-    n = read_data_record(SAMPLE_RECORD, samples, SAMPLE_BUFFER_SIZE);
+    if ( argc != 2)
+    {
+        printf("Please provide data record file name.");
+        return EXIT_FAILURE;
+    }
+
+    n = read_data_record(argv[1], samples, SAMPLE_BUFFER_SIZE);
     if ( n == 0 )
     {
         printf("Reading data record failed");
@@ -41,6 +75,8 @@ int main (void)
     return EXIT_SUCCESS;
 }
 
+
+/*---- Local functions -------------------------------------------------------*/
 int algorithm_part1(unsigned int samples[], int n)
 {
     int c = 0;
@@ -73,3 +109,6 @@ int algorithm_part2(unsigned int samples[], int n)
     return c;
 }
 
+
+
+/*----------------------------------------------------------- END OF FILE ----*/
