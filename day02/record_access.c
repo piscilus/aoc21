@@ -1,9 +1,41 @@
+/**
+ * \file record_access.c
+ *
+ * \copyright (C) 2021 piscilus
+ *
+ * \brief Module to access the data record.
+ */
+
+/*---- Includes --------------------------------------------------------------*/
 #include "record_access.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
 
+
+/*---- Local macro definitions -----------------------------------------------*/
+
+
+/*---- Local type definitions ------------------------------------------------*/
+
+
+/*---- Local function prototypes ---------------------------------------------*/
+
+
+/*---- Global constants ------------------------------------------------------*/
+
+
+/*---- Global data -----------------------------------------------------------*/
+
+
+/*---- Local constants -------------------------------------------------------*/
+
+
+/*---- Local data ------------------------------------------------------------*/
+
+
+/*---- Exported functions ----------------------------------------------------*/
 int read_data_record(char* fname, command_t commands[], int max)
 {
     int i = 0;
@@ -32,3 +64,10 @@ int read_data_record(char* fname, command_t commands[], int max)
 
     return i;
 }
+
+
+/*---- Local functions -------------------------------------------------------*/
+
+
+
+/*----------------------------------------------------------- END OF FILE ----*/

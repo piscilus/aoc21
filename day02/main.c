@@ -1,14 +1,44 @@
+/**
+ * \file main.c
+ *
+ * \copyright (C) 2021 piscilus
+ *
+ * \brief Main program for advent of code 2021 day 1.
+ */
+
+/*---- Includes --------------------------------------------------------------*/
 #include "record_access.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+
+/*---- Local macro definitions -----------------------------------------------*/
 #define SAMPLE_BUFFER_SIZE (2000)
 
+
+/*---- Local type definitions ------------------------------------------------*/
+
+
+/*---- Local function prototypes ---------------------------------------------*/
 unsigned int dive_part1(command_t commands[], int n);
 unsigned int dive_part2(command_t commands[], int n);
 
+
+/*---- Global constants ------------------------------------------------------*/
+
+
+/*---- Global data -----------------------------------------------------------*/
+
+
+/*---- Local constants -------------------------------------------------------*/
+
+
+/*---- Local data ------------------------------------------------------------*/
+
+
+/*---- Exported functions ----------------------------------------------------*/
 int main ( int argc, char *argv[] )
 {
     unsigned int result;
@@ -46,6 +76,8 @@ int main ( int argc, char *argv[] )
     return EXIT_SUCCESS;
 }
 
+
+/*---- Local functions -------------------------------------------------------*/
 unsigned int dive_part1(command_t commands[], int n)
 {
     struct
@@ -116,3 +148,6 @@ unsigned int dive_part2(command_t commands[], int n)
     return (position.h * position.d);
 }
 
+
+
+/*----------------------------------------------------------- END OF FILE ----*/
