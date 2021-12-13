@@ -50,7 +50,7 @@ int read_data_record(char* fname, unsigned int samples[], int n)
         return 0;
     }
 
-    while ( EOF != fscanf(fp, "%d", &samples[i]))
+    while ( EOF != fscanf(fp, "%u", &samples[i]))
     {
         if ( i >= n)
         {

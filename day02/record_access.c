@@ -50,7 +50,7 @@ int read_data_record(char* fname, command_t commands[], int max)
         return 0;
     }
 
-    while ( EOF != fscanf(fp, "%s %d", &commands[i].d[0], &commands[i].v))
+    while ( EOF != fscanf(fp, "%s %u", &commands[i].d[0], &commands[i].v))
     {
         if ( i >= max)
         {

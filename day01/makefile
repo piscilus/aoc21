@@ -1,13 +1,16 @@
-src = $(wildcard *.c)
-obj = $(src:.c=.o)
+# Name of the snippet:
+TARGET_NAME = day01
 
-CC = gcc
-CFLAGS  = -g -Wall
+# Specify all source files:
+SOURCES = main.c
+SOURCES += record_access.c
 
-day01.exe: $(obj)
-	gcc -o $@ $^ $(CFLAGS)
+# Specify all include paths:
+INCLUDES = -I.
+#INCLUDES += ...
 
-.PHONY: clean
+# Specify defines:
+DEFINES =
+#DEFINES += ...
 
-clean:
-	rm $(obj) day01.exe
+include ../global.mk

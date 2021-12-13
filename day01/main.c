@@ -96,7 +96,7 @@ int algorithm_part2(unsigned int samples[], int n)
     int c = 0;
     unsigned int prev_window = samples[0] + samples[1] + samples[2];
 
-    for ( int i = 2; i < n-1U; i++ )
+    for ( int i = 2; i < n-1; i++ )
     {
         unsigned int window = samples[i-1] + samples[i] + samples[i+1];
         if (window > prev_window)

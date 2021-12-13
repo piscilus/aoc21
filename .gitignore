@@ -1,3 +1,4 @@
-**.o
-**.exe
+**/debug
+**/objects
+**/release
 **.vscode
