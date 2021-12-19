@@ -63,7 +63,7 @@ int main ( int argc, char *argv[] )
     char c;
     while ( EOF != fscanf(fp, "%d%c", &a, &c))
     {
-        if (a > 8)
+        if (a >= STAGES)
         {
             printf("invalid data %d", a);
             return EXIT_FAILURE;
