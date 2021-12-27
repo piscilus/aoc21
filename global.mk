@@ -16,7 +16,7 @@ CFLAGS =\
 	-Wextra\
 	-Wpedantic
 CFLAGS_RELEASE = -DNDEBUG
-CFLAGS_DEBUG =
+CFLAGS_DEBUG = -g
 
 
 #LINKER
