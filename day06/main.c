@@ -1,7 +1,10 @@
 /**
  * \file main.c
  *
- * \copyright (C) 2021 piscilus
+ * \copyright (C) 2021 "piscilus" Julian Kraemer
+ *
+ * Distributed under MIT license.
+ * See file LICENSE for details or copy at https://opensource.org/licenses/MIT
  *
  * \brief Main program for advent of code 2021 day 6.
  */
@@ -21,7 +24,7 @@
 
 
 /*---- Local function prototypes ---------------------------------------------*/
-void print_population( uint64_t f[], int d );
+static void print_population( uint64_t f[], int d );
 
 
 /*---- Global constants ------------------------------------------------------*/
@@ -53,42 +56,44 @@ int main ( int argc, char *argv[] )
 
     FILE* fp = fopen(argv[1], "r");
 
-    if (!fp)
+    if ( !fp )
     {
-        printf("Could not open file!");
-        return EXIT_FAILURE;
+        fprintf(stderr, "Could not open file!");
+        exit(EXIT_FAILURE);
     }
 
     int a;
     char c;
-    while ( EOF != fscanf(fp, "%d%c", &a, &c))
+    while ( EOF != fscanf(fp, "%d%c", &a, &c) )
     {
-        if (a >= STAGES)
+        if ( a >= STAGES )
         {
-            printf("invalid data %d", a);
-            return EXIT_FAILURE;
+            fprintf(stderr, "invalid data %d", a);
+            exit(EXIT_FAILURE);
         }
         fishes_per_stage[a]++;
-        if (c == '\n')
+        if ( c == '\n' )
             break;
     }
+
+    fclose(fp);
 
     /* initial population: */
     print_population(fishes_per_stage, 0);
 
-    for (int d = 0; d < days; d++)
+    for ( int d = 0; d < days; d++ )
     {
         uint64_t tmp = fishes_per_stage[0];
         for ( int s = 0; s < STAGES; s++ )
         {
-            if (s+1 < STAGES)
+            if ( (s + 1) < STAGES )
             {
-                fishes_per_stage[s] = fishes_per_stage[s+1];
+                fishes_per_stage[s] = fishes_per_stage[s + 1];
             }
         }
         fishes_per_stage[6] += tmp;
         fishes_per_stage[8] = tmp;
-        print_population(fishes_per_stage, d+1);
+        print_population(fishes_per_stage, (d + 1));
     }
 
     return EXIT_SUCCESS;
@@ -96,7 +101,7 @@ int main ( int argc, char *argv[] )
 
 
 /*---- Local functions -------------------------------------------------------*/
-void print_population( uint64_t f[], int d )
+static void print_population( uint64_t f[], int d )
 {
     printf("Day %03d: ", d);
     uint64_t total = 0;
