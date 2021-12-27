@@ -1,14 +1,15 @@
 /**
  * \file main.c
  *
- * \copyright (C) 2021 piscilus
+ * \copyright (C) 2021 "piscilus" Julian Kraemer
  *
- * \brief Main program for advent of code 2021 day 2.
+ * Distributed under MIT license.
+ * See file LICENSE for details or copy at https://opensource.org/licenses/MIT
+ *
+ * \brief Main program for advent of code 2021 day 1.
  */
 
 /*---- Includes --------------------------------------------------------------*/
-#include "record_access.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -40,37 +41,45 @@ int algorithm_part2(unsigned int samples[], int n);
 /*---- Exported functions ----------------------------------------------------*/
 int main ( int argc, char *argv[] )
 {
-    int count = 0;
     unsigned int samples[SAMPLE_BUFFER_SIZE] = { 0 };
-    int n;
+    int num_samples = 0;
+    int result = 0;
 
     printf("Advent of Code 2021 - Day 1: Sonar Sweep\n\n");
 
-    if ( argc != 2)
+    if ( argc != 2 )
     {
-        printf("Please provide data record file name.");
-        return EXIT_FAILURE;
+        fprintf(stderr, "Please provide data record file name.");
+        exit(EXIT_FAILURE);
     }
 
-    n = read_data_record(argv[1], samples, SAMPLE_BUFFER_SIZE);
-    if ( n == 0 )
+    FILE* fp = fopen(argv[1], "r");
+
+    if ( !fp )
     {
-        printf("Reading data record failed");
-        return EXIT_FAILURE;
+        fprintf(stderr, "Could not open file!");
+        exit(EXIT_FAILURE);
     }
-    if ( n < 0)
+
+    while ( EOF != fscanf(fp, "%u\n", &samples[num_samples]) )
     {
-        printf("Buffer too small, more data available");
-        return EXIT_FAILURE;
+        if ( num_samples >= SAMPLE_BUFFER_SIZE )
+        {
+            fprintf(stderr, "Buffer overflow, too much data!");
+            exit(EXIT_FAILURE);
+        }
+        num_samples++;
     }
+
+    fclose(fp);
 
     printf("Part 1:\n");
-    count = algorithm_part1(samples, n);
-    printf("result: %d\n", count);
+    result = algorithm_part1(samples, num_samples);
+    printf("\tresult = %d\n", result);
 
     printf("Part 2:\n");
-    count = algorithm_part2(samples, n);
-    printf("result: %d\n", count);
+    result = algorithm_part2(samples, num_samples);
+    printf("\tresult = %d\n", result);
 
     return EXIT_SUCCESS;
 }
@@ -83,11 +92,12 @@ int algorithm_part1(unsigned int samples[], int n)
 
     for ( int i = 1; i < n; i++ )
     {
-        if ( samples[i] > samples[i-1])
+        if ( samples[i] > samples[i - 1] )
         {
             c++;
         }
     }
+
     return c;
 }
 
@@ -96,10 +106,10 @@ int algorithm_part2(unsigned int samples[], int n)
     int c = 0;
     unsigned int prev_window = samples[0] + samples[1] + samples[2];
 
-    for ( int i = 2; i < n-1; i++ )
+    for ( int i = 2; i < (n - 1); i++ )
     {
-        unsigned int window = samples[i-1] + samples[i] + samples[i+1];
-        if (window > prev_window)
+        unsigned int window = samples[i - 1] + samples[i] + samples[i + 1];
+        if ( window > prev_window )
         {
             c++;
         }

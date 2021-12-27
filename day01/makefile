@@ -1,9 +1,9 @@
 # Name of the snippet:
-TARGET_NAME = day01
+TARGET_NAME = program
 
 # Specify all source files:
 SOURCES = main.c
-SOURCES += record_access.c
+#SOURCES += ...
 
 # Specify all include paths:
 INCLUDES = -I.
