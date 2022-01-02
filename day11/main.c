@@ -44,7 +44,7 @@ int main ( int argc, char *argv[] )
 {
     unsigned int octopuses[GRID_ROWS][GRID_COLS] = { 0 };
 
-    printf("Advent of Code 2021 - Day 9: Smoke Basin\n\n");
+    printf("Advent of Code 2021 - Day 11: Dumbo Octopus\n\n");
 
     if ( argc != 2 )
     {
@@ -87,9 +87,9 @@ int main ( int argc, char *argv[] )
         }
     }
 
-    int step = 0;
-    int num_flashes = 0;
-    int running = 1;
+    int step = 0; /* count the total number of steps */
+    int num_flashes = 0; /* count the total number of flashes */
+    int running = 1; /* keeps the game running until all octopuses flash at the same time */
     while ( running )
     {
         int flashing;
@@ -143,6 +143,9 @@ int main ( int argc, char *argv[] )
             printf("Part 1: %d flashes occured after %d steps.\n", num_flashes, NUM_STEPS);
         }
 
+        /* assume that all octopuses have flashed if the number of flashes in
+         * this step matches the grid size:
+         */
         if ( (num_flashes - prev_num_flashes) >= (GRID_ROWS * GRID_COLS) )
         {
             printf("Part 2: All octopuses flashed during step %d!\n", step);
