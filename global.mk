@@ -32,30 +32,20 @@ OBJECTS_DEBUG = $(addprefix $(OBJECTDIR_DEBUG)/, $(SOURCES:.c=.o) )
 
 
 $(OBJECTDIR_RELEASE)/%.o: %.c
-	@echo 'Building file: $*.c in $(@D)'
-	-mkdir  -p $(@D)
+	-mkdir -p $(@D)
 	$(CC) $(INCLUDES) $(CFLAGS) $(CFLAGS_RELEASE) $(DEFINES) -o $@ -l $(@D) $<
-	@echo ' '
 
 $(OBJECTDIR_DEBUG)/%.o: %.c
-	@echo 'Building file: $*.c in $(@D)'
-	-mkdir  -p $(@D)
+	-mkdir -p $(@D)
 	$(CC) $(INCLUDES) $(CFLAGS) $(CFLAGS_DEBUG) $(DEFINES) -o $@ -l $(@D) $<
-	@echo ' '
 
 release/$(TARGET_NAME).exe: $(OBJECTS_RELEASE)
-	@echo 'Building target: $@'
 	mkdir -p release
-	$(LD) $(OBJECTS_DEBUG) $(LDFLAGS) $(LDFLAGS_RELEASE) -o $@
-	@echo 'Finished building target: $@'
-	@echo ' '
+	$(LD) $(OBJECTS_RELEASE) $(LDFLAGS) $(LDFLAGS_RELEASE) -o $@
 
 debug/$(TARGET_NAME).exe: $(OBJECTS_DEBUG)
-	@echo 'Building target: $@'
 	mkdir -p debug
 	$(LD) $(OBJECTS_DEBUG) $(LDFLAGS) $(LDFLAGS_DEBUG) -o $@
-	@echo 'Finished building target: $@'
-	@echo ' '
 
 debug: debug/$(TARGET_NAME).exe
 release: release/$(TARGET_NAME).exe
